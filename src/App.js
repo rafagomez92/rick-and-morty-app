@@ -4,15 +4,15 @@ import Characters from './pages/Characters';
 import Character from './pages/Character';
 import Episodes from './pages/Episodes';
 import Episode from './pages/Episode';
-import NotFound from './pages/NotFound';   //Pagina de not found
+import NotFound from './pages/NotFound'; 
 import Header from './components/Header'; 
 
 function App() {
   return (
     <>
-      <Router>
-        <Header />
-        <Switch> {/*Empezamos a crear nuestras rutas, las rutas con  /"ruta"/:id es para acceder al contenido por medio de su id o dando clic en la tarjeta que este contenido en /"rutas"/  */}              
+      <Router> {/* Creaction de las Rutas, los componentes se encuentran en la carpeta de pages */}
+        <Header />        
+        <Switch>               
               <Route exact path="/" component={Home}/>
               <Route path="/characters" component={Characters}/>              
               <Route path="/character/:id" component={Character}/>    
