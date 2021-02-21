@@ -1,7 +1,13 @@
+import SingleCharacter from "../components/character/SingleCharacter"
+
 const Character = () => {
     return (
-        <>
-            <h1>HOLA DESDE CHARACTER</h1>
+        <>            
+            <div className="container">
+                <div className="p-4 card m-5 rounded-0 shadow-sm">                    
+                    <SingleCharacter />
+                </div>                    
+            </div>            
         </>
     );
 }

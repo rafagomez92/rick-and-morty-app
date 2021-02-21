@@ -10,7 +10,7 @@ import Header from './components/Header';
 function App() {
   return (
     <>
-      <Router> {/* Creaction de las Rutas, los componentes se encuentran en la carpeta de pages */}
+      <Router> {/* Creación de las Rutas, los componentes se encuentran en la carpeta de pages */}
         <Header />        
         <Switch>               
               <Route exact path="/" component={Home}/>

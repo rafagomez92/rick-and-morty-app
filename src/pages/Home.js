@@ -1,7 +1,15 @@
+import FormSearch from "../components/home/FormSearch"
+import Recent from "../components/home/Recent"
+
 const Home = () => {
     return (
         <>
-            <h1>HOLA DESDE HOME</h1>
+            <div className="container">
+                <div className="p-4 card m-5 rounded-0 shadow-sm">
+                    <FormSearch />                    
+                </div>
+                    <Recent />                 
+            </div>
         </>
     );
 }
