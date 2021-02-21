@@ -6,7 +6,7 @@ const Header = () => {
         <nav className="navbar navbar-expand-lg justify-content-center navbar-dark bg-dark">
             <div className="container m-1">
                 <Link className="navbar-brand" to="/">                
-                    <img src="https://iconarchive.com/download/i106878/goodstuff-no-nonsense/free-space/rick.ico" width="40" height="40" alt="Rick and morty icon" className="d-inline-block align-top me-2" />
+                    <img src="https://iconarchive.com/download/i106878/goodstuff-no-nonsense/free-space/rick.ico" width="40" height="40" alt="Rick and morty icon" className="d-inline-block align-top me-2 rounded-circle p-1 bg-warning" />
                     <span className="text-warning navbar-brand mb- h1">App</span>
                 </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">

@@ -31,13 +31,12 @@ const SingleCharacter = () => {
                 "https://rickandmortyapi.com/api/episode/31",                                
                 "https://rickandmortyapi.com/api/episode/3"
             ],
-            "url": "https://rickandmortyapi.com/api/character/335",
-            "created": "2018-01-10T16:39:34.837Z"
+            "url": "https://rickandmortyapi.com/api/character/335",            
+            "created": "2017-11-04T19:09:56.428Z"
         }
     
 
-    const { name, status, species, type, gender, origin, location, episode, created, image } = data;
-    console.log(Date.parse(created));
+    const { name, status, species, type, gender, origin, location, episode, created, image } = data;    
     
     const episodeList = episode.map(title => {
         // Consiguiendo el ID de los episodios a través de la url (Convertimos en array el valor de la url)                 
@@ -78,7 +77,7 @@ const SingleCharacter = () => {
                         <li class="list-group-item">                            
                             <p><span className="text-muted">Location:</span> <span className="">{location.name}</span></p>                                
                         </li>
-                        <li class="list-group-item">                            
+                        <li class="list-group-item">                                                        
                             <p><span className="text-muted">Created:</span> <span className="">{created.substring(0,10)}</span></p>                                
                         </li>
                         <li class="list-group-item">                            

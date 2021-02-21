@@ -1,7 +1,13 @@
+import SingleEpisode from "../components/episode/SingleEpisode";
+
 const Episode = () => {
     return (
         <>
-            <h1>HOLA DESDE EPISODE</h1>
+            <div className="container">
+                <div className="p-4 card m-5 rounded-0 shadow-sm">                    
+                    <SingleEpisode />
+                </div>                    
+            </div>
         </>
     );
 }
