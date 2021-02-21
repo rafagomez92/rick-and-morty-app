@@ -6,11 +6,15 @@ import Episodes from './pages/Episodes';
 import Episode from './pages/Episode';
 import NotFound from './pages/NotFound'; 
 import Header from './components/Header'; 
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 function App() {
+  
   return (
     <>
       <Router> {/* Creación de las Rutas, los componentes se encuentran en la carpeta de pages */}
+        <Provider store={store} >      
         <Header />        
         <Switch>               
               <Route exact path="/" component={Home}/>
@@ -19,7 +23,8 @@ function App() {
               <Route path="/episodes" component={Episodes}/>                            
               <Route path="/episode/:id" component={Episode}/>              
               <Route component={NotFound}/>
-          </Switch>                
+          </Switch>
+          </Provider>                
       </Router>
     </>
   );
