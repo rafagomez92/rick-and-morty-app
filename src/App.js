@@ -7,14 +7,16 @@ import Episode from './pages/Episode';
 import NotFound from './pages/NotFound'; 
 import Header from './components/Header'; 
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import store, { history } from './redux/store';
+import { ConnectedRouter } from 'connected-react-router';
 
 function App() {
   
   return (
     <>
       <Router> {/* Creación de las Rutas, los componentes se encuentran en la carpeta de pages */}
-        <Provider store={store} >      
+        <Provider store={store} >
+          <ConnectedRouter history={history}>
         <Header />        
         <Switch>               
               <Route exact path="/" component={Home}/>
@@ -24,6 +26,7 @@ function App() {
               <Route path="/episode/:id" component={Episode}/>              
               <Route component={NotFound}/>
           </Switch>
+          </ConnectedRouter>
           </Provider>                
       </Router>
     </>

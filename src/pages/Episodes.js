@@ -1,7 +1,14 @@
+import EpisodesList from "../components/episodes/EpisodesList";
+
+
 const Episodes = () => {
     return (
         <>
-            <h1>HOLA DESDE EPISODES</h1>
+            <div className="container">
+                <div className="p-4 card m-5 rounded-0 shadow-sm">                    
+                    <EpisodesList />
+                </div>                    
+            </div>
         </>
     );
 }

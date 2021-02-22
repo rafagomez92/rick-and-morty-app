@@ -4,7 +4,7 @@ import axiosCustomer from '../config/axios';
 const initialData = {
     fetching: false,
     charactersArray: [],
-    currentCharacter: {}
+    currentCharacter: {}    
 };
 
 const GET_CHARACTERS = "GET_CHARACTERS";
@@ -12,7 +12,7 @@ const GET_CHARACTERS_SUCCESS = "GET_CHARACTERS_SUCCESS";
 const GET_CHARACTERS_ERROR = "GET_CHARACTERS_ERROR";
 
 
-// Reducder
+// Reducer
 export default function reducer(state = initialData, action) {
     switch(action.type) {  
         case GET_CHARACTERS:
@@ -38,11 +38,11 @@ export default function reducer(state = initialData, action) {
 
 }
 // Action (thunks)
-export const getCharactersAction = () => (dispatch, getState) => {
+export const getCharactersAction = () => async(dispatch, getState) => {
     dispatch({
         type: GET_CHARACTERS        
     });
-    return axiosCustomer.get('/character')
+    return await axiosCustomer.get('/character')
     .then(res => {
         dispatch({
             type: GET_CHARACTERS_SUCCESS,
@@ -55,5 +55,4 @@ export const getCharactersAction = () => (dispatch, getState) => {
             payload: error.response.message
         })
     })
-
 }
