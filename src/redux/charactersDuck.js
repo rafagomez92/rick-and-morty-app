@@ -11,6 +11,7 @@ const GET_CHARACTERS = "GET_CHARACTERS";
 const GET_CHARACTERS_SUCCESS = "GET_CHARACTERS_SUCCESS";
 const GET_CHARACTERS_ERROR = "GET_CHARACTERS_ERROR";
 
+const GET_CHARACTER = "GET_CHARACTER";
 
 // Reducer
 export default function reducer(state = initialData, action) {
@@ -32,6 +33,11 @@ export default function reducer(state = initialData, action) {
                 fetching: false,
                 error: action.payload
             }   
+        case GET_CHARACTER: 
+            return {
+                ...state,
+                currentCharacter: action.payload[0]
+            }
         default: 
             return state;
     }
@@ -54,5 +60,15 @@ export const getCharactersAction = () => async(dispatch, getState) => {
             type: GET_CHARACTERS_ERROR,
             payload: error.response.message
         })
+    })
+};
+
+export const getCharacterAction = (id) => (dispatch, getState) => {
+    const { charactersArray } = getState().characters
+    const character = charactersArray.filter(character => character.id === id);    
+    console.log(character);
+    dispatch({
+        type: GET_CHARACTER,
+        payload: character
     })
 }

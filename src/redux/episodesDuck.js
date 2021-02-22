@@ -1,5 +1,4 @@
 import axiosCustomer from '../config/axios';
-import { push } from 'connected-react-router';
 
 // Constantes
 const initialData = {
@@ -39,7 +38,7 @@ export default function reducer(state = initialData, action) {
         case GET_EPISODE:
             return {
                 ...state,
-                currentEpisode: action.payload
+                currentEpisode: action.payload[0]
             }
         default:
             return state;
@@ -47,11 +46,11 @@ export default function reducer(state = initialData, action) {
 };
 
 // Action (thunks)
-export const getEpisodesAction = () => async (dispatch, getState) => {    
+export const getEpisodesAction = () => async(dispatch, getState) => {    
     dispatch({
         type: GET_EPISODES        
     });
-    return await axiosCustomer.get('/episode/?page=1')
+    return await axiosCustomer.get('/episode')
     .then(res => {
         dispatch({
             type: GET_EPISODES_SUCCESS,
@@ -68,11 +67,11 @@ export const getEpisodesAction = () => async (dispatch, getState) => {
 
 export const getEpisodeAction = (id) => (dispatch, getState) => {
     const { episodesArray } = getState().episodes
-    const episode = episodesArray.filter(episode => episode.id === id);
+    const episode = episodesArray.filter(episode => episode.id === id);    
+    console.log(episode);
     dispatch({
         type: GET_EPISODE,
         payload: episode
-    })
-    dispatch(push(`/character/${id}`))
+    })    
 };
 

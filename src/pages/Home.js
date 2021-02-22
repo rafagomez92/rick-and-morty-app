@@ -1,5 +1,4 @@
-import FormSearch from "../components/home/FormSearch"
-import Recent from "../components/home/Recent"
+import FormSearch from "../components/home/FormSearch";
 
 const Home = () => {
     return (
@@ -7,8 +6,7 @@ const Home = () => {
             <div className="container">
                 <div className="p-4 card m-5 rounded-0 shadow-sm">
                     <FormSearch />                    
-                </div>
-                    <Recent />                 
+                </div>                                     
             </div>
         </>
     );

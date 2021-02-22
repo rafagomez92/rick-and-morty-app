@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 import CardEpisodes from './CardEpisodes';
 
-const EpisodesList = ({ episodes, history }) => {
-    console.log(episodes);
+const EpisodesList = ({ episodes }) => {    
     
     const episodesList = episodes.map(episode => 
-        <CardEpisodes episode={episode} key={episode.id} history={history} />
+        <CardEpisodes episode={episode} key={episode.id} />
     );
 
     return (
@@ -18,7 +17,7 @@ const EpisodesList = ({ episodes, history }) => {
                     <div className="col text-center">
                         <button className="btn btn-warning text-white me-2">Prev</button>
                         <button className="btn btn-warning text-white">Next</button>
-                </div>
+                    </div>
                 
             </div>
         </>

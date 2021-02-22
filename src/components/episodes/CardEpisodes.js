@@ -1,13 +1,15 @@
 import { getEpisodeAction } from '../../redux/episodesDuck';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-const CardEpisodes = ({ episode, getEpisodeAction, history }) => {
+const CardEpisodes = ({ episode, getEpisodeAction }) => {
     const { name, air_date, id } = episode;    
+    let history = useHistory();
 
     const onClick = (e) => {  
         e.preventDefault();
         getEpisodeAction(id);
-        history.push('/')        ;
+        history.push(`/episode/${id}`);
     };
 
 
