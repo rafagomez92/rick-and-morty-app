@@ -4,7 +4,9 @@ import axiosCustomer from '../config/axios';
 const initialData = {
     fetching: false,
     charactersArray: [],
-    currentCharacter: {}    
+    currentCharacter: {},
+    initialPage: 1,
+    endPage: 0    
 };
 
 const GET_CHARACTERS = "GET_CHARACTERS";
@@ -24,8 +26,10 @@ export default function reducer(state = initialData, action) {
         case GET_CHARACTERS_SUCCESS:
             return { 
                 ...state, 
-                charactersArray: action.payload,
-                fetching: false
+                charactersArray: action.payload.results,
+                fetching: false,
+                initialPage: action.payload.page,
+                endPage: action.payload.info.pages
             }
         case GET_CHARACTERS_ERROR:
             return {
@@ -44,15 +48,15 @@ export default function reducer(state = initialData, action) {
 
 }
 // Action (thunks)
-export const getCharactersAction = () => async(dispatch, getState) => {
+export const getCharactersAction = (page = 1) => async(dispatch, getState) => {
     dispatch({
         type: GET_CHARACTERS        
     });
-    return await axiosCustomer.get('/character')
+    return await axiosCustomer.get(`/character?page=${page}`)
     .then(res => {
         dispatch({
             type: GET_CHARACTERS_SUCCESS,
-            payload: res.data.results
+            payload: {results: res.data.results, page, info: res.data.info }
         })
     })
     .catch(error => {
@@ -60,8 +64,10 @@ export const getCharactersAction = () => async(dispatch, getState) => {
             type: GET_CHARACTERS_ERROR,
             payload: error.response.message
         })
-    })
+    });
 };
+
+
 
 export const getCharacterAction = (id) => (dispatch, getState) => {
     const { charactersArray } = getState().characters

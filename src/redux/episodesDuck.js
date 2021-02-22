@@ -4,7 +4,9 @@ import axiosCustomer from '../config/axios';
 const initialData = {
     fetching: false,
     episodesArray: [],
-    currentEpisode: {}
+    currentEpisode: {},
+    initialPage: 1,
+    endPage: 0 
 };
 
 const GET_EPISODES = 'GET_EPISODES';
@@ -26,8 +28,10 @@ export default function reducer(state = initialData, action) {
         case GET_EPISODES_SUCCESS:
             return {
                 ...state,
-                episodesArray: action.payload,
-                fetching: false
+                episodesArray: action.payload.results,
+                fetching: false,
+                initialPage: action.payload.page,
+                endPage: action.payload.info.pages
             }
         case GET_EPISODES_ERROR:
             return {
@@ -46,15 +50,15 @@ export default function reducer(state = initialData, action) {
 };
 
 // Action (thunks)
-export const getEpisodesAction = () => async(dispatch, getState) => {    
+export const getEpisodesAction = (page=1) => async(dispatch, getState) => {    
     dispatch({
         type: GET_EPISODES        
     });
-    return await axiosCustomer.get('/episode')
+    return await axiosCustomer.get(`/episode?page=${page}`)
     .then(res => {
         dispatch({
             type: GET_EPISODES_SUCCESS,
-            payload: res.data.results
+            payload: {results: res.data.results, page, info: res.data.info }
         })
     })
     .catch(error => {

@@ -1,11 +1,19 @@
 import { connect } from 'react-redux';
 import CardEpisodes from './CardEpisodes';
+import { getEpisodesAction } from '../../redux/episodesDuck';
 
-const EpisodesList = ({ episodes }) => {    
+const EpisodesList = ({ episodes, initialPage, endPage, getEpisodesAction }) => {    
     
     const episodesList = episodes.map(episode => 
         <CardEpisodes episode={episode} key={episode.id} />
     );
+
+    const onClickNext = (e) => {
+        getEpisodesAction(initialPage+1);        
+    };
+    const onClickPrev = (e) => {
+        getEpisodesAction(initialPage-1);        
+    };
 
     return (
         <>
@@ -15,9 +23,9 @@ const EpisodesList = ({ episodes }) => {
                     {episodesList}                    
                     </div>
                     <div className="col text-center">
-                        <button className="btn btn-warning text-white me-2">Prev</button>
-                        <button className="btn btn-warning text-white">Next</button>
-                    </div>
+                    {initialPage === 1 ? null : <button className="btn btn-warning text-white me-2" onClick={onClickPrev}>Prev</button>}
+                    {initialPage === endPage ? null : <button className="btn btn-warning text-white" onClick={onClickNext}>Next</button>}
+                </div>
                 
             </div>
         </>
@@ -26,9 +34,11 @@ const EpisodesList = ({ episodes }) => {
  
 function mapStateToProps(state){
     return {
-        episodes: state.episodes.episodesArray
+        episodes: state.episodes.episodesArray,
+        initialPage: state.episodes.initialPage,
+        endPage: state.episodes.endPage
     }
 
 }
  
-export default connect(mapStateToProps)(EpisodesList);
+export default connect(mapStateToProps, { getEpisodesAction })(EpisodesList);

@@ -1,13 +1,22 @@
 import CardCharacter from './CardCharacter';
 import { connect } from 'react-redux';
+import { getCharactersAction } from '../../redux/charactersDuck';
 
-const CharacterList = ({ characters }) => {
+const CharacterList = ({ characters, initialPage, endPage, getCharactersAction }) => {
 
     const listCharacters = characters.map(character => 
         <CardCharacter key={character.id}  character={character} />
     );
 
-    console.log(characters);
+    console.log(initialPage);
+
+    const onClickNext = (e) => {
+        getCharactersAction(initialPage+1);        
+    };
+    const onClickPrev = (e) => {
+        getCharactersAction(initialPage-1);        
+    };
+
     return (
         <>
             <div className="container">
@@ -16,8 +25,8 @@ const CharacterList = ({ characters }) => {
                     {listCharacters}                    
                 </div>
                 <div className="col text-center">
-                    <button className="btn btn-warning text-white me-2">Prev</button>
-                    <button className="btn btn-warning text-white">Next</button>
+                    {initialPage === 1 ? null : <button className="btn btn-warning text-white me-2" onClick={onClickPrev}>Prev</button>}
+                    {initialPage === endPage ? null : <button className="btn btn-warning text-white" onClick={onClickNext}>Next</button>}
                 </div>
                 
             </div>
@@ -27,9 +36,11 @@ const CharacterList = ({ characters }) => {
 
 function mapStateToProps(state){
     return {
-        characters: state.characters.charactersArray
+        characters: state.characters.charactersArray,
+        initialPage: state.characters.initialPage,
+        endPage: state.characters.endPage
     }
 
 }
  
-export default connect(mapStateToProps)(CharacterList);
+export default connect(mapStateToProps, { getCharactersAction })(CharacterList);
