@@ -5,19 +5,20 @@ const SingleCharacter = ({ currentCharacter }) => {
     // Nota: origin, location devuelven un objeto 
     // con dos valores name y url,
     // Episode devuelve un array
-    const { name, status, species, gender, type, origin, location, episode, created, image } = currentCharacter;    
-    
     console.log(currentCharacter);
-    const episodeList = episode.map(title => {
-        // Consiguiendo el ID de los episodios a través de la url                 
-        const getID = title.split('').reverse().join('').split('/', 1).reverse().join();                
-        return (
-            <button className="btn btn-warning text-white m-1" key={getID}> 
-                {getID}
-            </button>
-        )
-    }
-    ); 
+    
+    const { name, status, species, gender, type, origin, location, episode, created, image } = currentCharacter;            
+
+    // const episodeList = episode.map(title => {
+    //     // Consiguiendo el ID de los episodios a través de la url                 
+    //     const getID = title.split('').reverse().join('').split('/', 1).reverse().join();                
+    //     return (
+    //         <button className="btn btn-warning text-white m-1" key={getID}> 
+    //             {getID}
+    //         </button>
+    //     )
+    // }
+    // ); 
 
     return (
         <>
@@ -47,15 +48,15 @@ const SingleCharacter = ({ currentCharacter }) => {
                         <li className="list-group-item">                            
                             <p><span className="text-muted">Location:</span> <span className="">{location.name}</span></p>                                
                         </li>
-                        <li className="list-group-item">                            
+                        {/* <li className="list-group-item">                            
                             <p><span className="text-muted">Episodes:</span></p>{episodeList}
-                        </li>                        
+                        </li>                         */}
                         <li className="list-group-item">                                                        
                             <p><span className="text-muted">Created:</span> <span className="">{created.substring(0,10)}</span></p>                                
                         </li>
                     </ul>
                     </div>
-                    <div className="col text-center">                        
+                    <div className="col text-center mt-3">                        
                         <Link to='/characters' className="btn btn-warning text-white">Character</Link>
                     </div>
                 </div>

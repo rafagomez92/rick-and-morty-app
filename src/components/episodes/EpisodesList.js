@@ -25,8 +25,7 @@ const EpisodesList = ({ episodes, initialPage, endPage, getEpisodesAction }) => 
                     <div className="col text-center">
                     {initialPage === 1 ? null : <button className="btn btn-warning text-white me-2" onClick={onClickPrev}>Prev</button>}
                     {initialPage === endPage ? null : <button className="btn btn-warning text-white" onClick={onClickNext}>Next</button>}
-                </div>
-                
+                </div>                
             </div>
         </>
     );

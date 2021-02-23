@@ -9,7 +9,7 @@ const CardCharacter = ({ character, getCharacterAction }) => {
 
     const onClick = (e) => {  
         e.preventDefault();        
-        getCharacterAction(id);
+        getCharacterAction(id);        
         history.push(`/character/${id}`);
     };
 

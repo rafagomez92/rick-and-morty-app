@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 
 const SingleEpisode = ({ currentEpisode }) => {    
     // Characters devuelve un array 
-    const { id, name, air_date, episode, characters, created } = currentEpisode;    
+    console.log(currentEpisode); 
+    const { id, name, air_date, episode, characters, created } = currentEpisode;  
     
     return (
         <>
+        Object.keys(obj).length === 0
             <div className="container">                
             <h5 className="text-center display-1">{name}</h5>                
                 <div className="row justify-content-center mt-5">
@@ -23,7 +25,7 @@ const SingleEpisode = ({ currentEpisode }) => {
                             <p><span className="text-muted">Episode:</span> <span className="">{episode}</span></p>                                                                
                         </li>                        
                         <li className="list-group-item">                            
-                            <p><span className="text-muted">Created:</span> <span className="">{created.substring(0,10)}</span></p>                                
+                            <p><span className="text-muted">Created:</span> <span className="">{created}</span></p>                                
                         </li>
                         <li className="list-group-item">                            
                             {/* <p><span className="text-muted">Characters:</span></p>{getCharacters} */}

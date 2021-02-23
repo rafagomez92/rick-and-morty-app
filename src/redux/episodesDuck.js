@@ -14,6 +14,8 @@ const GET_EPISODES_SUCCESS = 'GET_EPISODES_SUCCESS';
 const GET_EPISODES_ERROR = 'GET_EPISODES_ERROR';
 
 const GET_EPISODE = 'GET_EPISODE';
+const GET_EPISODE_SUCCESS = 'GET_EPISODE_SUCCESS';
+const GET_EPISODE_ERROR = 'GET_EPISODE_ERROR';
 
 
 
@@ -21,11 +23,12 @@ const GET_EPISODE = 'GET_EPISODE';
 export default function reducer(state = initialData, action) {
     switch (action.type) {
         case GET_EPISODES:
+        case GET_EPISODE:            
             return {
                 ...state,
                 fetching: true,                
             }
-        case GET_EPISODES_SUCCESS:
+            case GET_EPISODES_SUCCESS:
             return {
                 ...state,
                 episodesArray: action.payload.results,
@@ -34,15 +37,16 @@ export default function reducer(state = initialData, action) {
                 endPage: action.payload.info.pages
             }
         case GET_EPISODES_ERROR:
+        case GET_EPISODE_ERROR:                
             return {
                 ...state,
                 fetching: false,
                 error: action.payload
             };
-        case GET_EPISODE:
+        case GET_EPISODE_SUCCESS:
             return {
                 ...state,
-                currentEpisode: action.payload[0]
+                currentEpisode: action.payload
             }
         default:
             return state;
@@ -69,13 +73,23 @@ export const getEpisodesAction = (page=1) => async(dispatch, getState) => {
     })
 };
 
-export const getEpisodeAction = (id) => (dispatch, getState) => {
-    const { episodesArray } = getState().episodes
-    const episode = episodesArray.filter(episode => episode.id === id);    
-    console.log(episode);
+export const getEpisodeAction = (id) => async (dispatch) => {
     dispatch({
-        type: GET_EPISODE,
-        payload: episode
-    })    
+        type: GET_EPISODE        
+    });
+
+    return await axiosCustomer.get(`/episode/${id}`)
+    .then(res => {        
+        dispatch({
+            type: GET_EPISODE_SUCCESS,
+            payload: res.data 
+        })
+    })
+    .catch(error => {
+        dispatch({
+            type: GET_EPISODE_ERROR,
+            payload: error.response.message
+        })
+    });    
 };
 

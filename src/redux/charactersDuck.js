@@ -6,7 +6,8 @@ const initialData = {
     charactersArray: [],
     currentCharacter: {},
     initialPage: 1,
-    endPage: 0    
+    endPage: 0,
+    idCharacter: 0    
 };
 
 const GET_CHARACTERS = "GET_CHARACTERS";
@@ -14,6 +15,8 @@ const GET_CHARACTERS_SUCCESS = "GET_CHARACTERS_SUCCESS";
 const GET_CHARACTERS_ERROR = "GET_CHARACTERS_ERROR";
 
 const GET_CHARACTER = "GET_CHARACTER";
+const GET_CHARACTER_SUCCESS = "GET_CHARACTER_SUCCESS";
+const GET_CHARACTER_ERROR = "GET_CHARACTER_ERROR";
 
 // Reducer
 export default function reducer(state = initialData, action) {
@@ -32,6 +35,7 @@ export default function reducer(state = initialData, action) {
                 endPage: action.payload.info.pages
             }
         case GET_CHARACTERS_ERROR:
+        case GET_CHARACTER_ERROR:             
             return {
                 ...state,
                 fetching: false,
@@ -40,7 +44,13 @@ export default function reducer(state = initialData, action) {
         case GET_CHARACTER: 
             return {
                 ...state,
-                currentCharacter: action.payload[0]
+                fetching:true
+            }
+        case GET_CHARACTER_SUCCESS: 
+            return {
+                ...state,
+                currentCharacter: action.payload,
+                fetching: false
             }
         default: 
             return state;
@@ -69,12 +79,25 @@ export const getCharactersAction = (page = 1) => async(dispatch, getState) => {
 
 
 
-export const getCharacterAction = (id) => (dispatch, getState) => {
-    const { charactersArray } = getState().characters
-    const character = charactersArray.filter(character => character.id === id);    
-    console.log(character);
+export const getCharacterAction = (id) => async (dispatch) => {    
     dispatch({
-        type: GET_CHARACTER,
-        payload: character
+        type: GET_CHARACTERS        
+    });
+
+    return await axiosCustomer.get(`/character/${id}`)
+    .then(res => {
+        console.log(res.data)
+        dispatch({
+            type: GET_CHARACTER_SUCCESS,
+            payload: res.data 
+        })
     })
+    .catch(error => {
+        dispatch({
+            type: GET_CHARACTER_ERROR,
+            payload: error.response.message
+        })
+    });
+
+    
 }

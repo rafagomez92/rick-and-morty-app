@@ -2,8 +2,7 @@ import axiosCustomer from '../config/axios';
 // Constantes
 const initialData = {
     fetching: false,
-    resultSearch: [],
-    currentSearch: {}    
+    resultSearch: [],    
 };
 
 const SEARCH = 'SEARCH';
