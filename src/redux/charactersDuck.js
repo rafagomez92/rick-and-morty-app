@@ -6,8 +6,7 @@ const initialData = {
     charactersArray: [],
     currentCharacter: {},
     initialPage: 1,
-    endPage: 0,
-    idCharacter: 0    
+    endPage: 0       
 };
 
 const GET_CHARACTERS = "GET_CHARACTERS";
@@ -22,11 +21,12 @@ const GET_CHARACTER_ERROR = "GET_CHARACTER_ERROR";
 export default function reducer(state = initialData, action) {
     switch(action.type) {  
         case GET_CHARACTERS:
+        case GET_CHARACTER:             
             return {
                 ...state,
                 fetching: true
             }  
-        case GET_CHARACTERS_SUCCESS:
+            case GET_CHARACTERS_SUCCESS:
             return { 
                 ...state, 
                 charactersArray: action.payload.results,
@@ -41,11 +41,6 @@ export default function reducer(state = initialData, action) {
                 fetching: false,
                 error: action.payload
             }   
-        case GET_CHARACTER: 
-            return {
-                ...state,
-                fetching:true
-            }
         case GET_CHARACTER_SUCCESS: 
             return {
                 ...state,
@@ -62,8 +57,8 @@ export const getCharactersAction = (page = 1) => async(dispatch, getState) => {
     dispatch({
         type: GET_CHARACTERS        
     });
-    return await axiosCustomer.get(`/character?page=${page}`)
-    .then(res => {
+    return await axiosCustomer.get(`/character?page=${page}`)    
+    .then(res => {        
         dispatch({
             type: GET_CHARACTERS_SUCCESS,
             payload: {results: res.data.results, page, info: res.data.info }
@@ -81,12 +76,11 @@ export const getCharactersAction = (page = 1) => async(dispatch, getState) => {
 
 export const getCharacterAction = (id) => async (dispatch) => {    
     dispatch({
-        type: GET_CHARACTERS        
+        type: GET_CHARACTER        
     });
 
     return await axiosCustomer.get(`/character/${id}`)
-    .then(res => {
-        console.log(res.data)
+    .then(res => {    
         dispatch({
             type: GET_CHARACTER_SUCCESS,
             payload: res.data 

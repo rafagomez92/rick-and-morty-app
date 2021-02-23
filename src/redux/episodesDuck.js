@@ -46,7 +46,8 @@ export default function reducer(state = initialData, action) {
         case GET_EPISODE_SUCCESS:
             return {
                 ...state,
-                currentEpisode: action.payload
+                currentEpisode: action.payloadm,
+                fetching:false
             }
         default:
             return state;
