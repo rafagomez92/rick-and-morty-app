@@ -4,7 +4,7 @@ const Home = () => {
     return (
         <>
             <div className="container">
-                <div className="p-4 card m-5 rounded-0 shadow-sm">
+                <div className="p-4">
                     <FormSearch />                    
                 </div>                                     
             </div>

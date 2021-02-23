@@ -56,7 +56,7 @@ const SingleCharacter = ({ currentCharacter }) => {
                     </ul>
                     </div>
                     <div className="col text-center">                        
-                        <Link to='/characters' className="btn btn-warning text-white w-25">Character</Link>
+                        <Link to='/characters' className="btn btn-warning text-white">Character</Link>
                     </div>
                 </div>
             </div>            

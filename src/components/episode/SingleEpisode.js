@@ -31,7 +31,7 @@ const SingleEpisode = ({ currentEpisode }) => {
                     </ul>
                     </div>
                     <div className="col text-center">                        
-                        <Link to='/episodes' className="btn btn-warning text-white w-25">Episodes</Link>
+                        <Link to='/episodes' className="btn btn-warning text-white">Episodes</Link>
                     </div>
                 </div>
             </div>            

@@ -7,9 +7,7 @@ const CharacterList = ({ characters, initialPage, endPage, getCharactersAction }
     const listCharacters = characters.map(character => 
         <CardCharacter key={character.id}  character={character} />
     );
-
-    console.log(initialPage);
-
+    
     const onClickNext = (e) => {
         getCharactersAction(initialPage+1);        
     };
@@ -20,9 +18,9 @@ const CharacterList = ({ characters, initialPage, endPage, getCharactersAction }
     return (
         <>
             <div className="container">
-                <div className="row justify-content-center">
-                    <h1 className="display-1 text-center">Characters</h1>
-                    {listCharacters}                    
+                <div className="row justify-content-center shadow-sm rounded-0">
+                    <h1 className="display-1 text-center">Characters</h1>                
+                        {listCharacters}                                        
                 </div>
                 <div className="col text-center">
                     {initialPage === 1 ? null : <button className="btn btn-warning text-white me-2" onClick={onClickPrev}>Prev</button>}

@@ -18,7 +18,7 @@ const EpisodesList = ({ episodes, initialPage, endPage, getEpisodesAction }) => 
     return (
         <>
             <div className="container">
-                <div className="row justify-content-center">
+                <div className="row justify-content-center shadow-sm rounded-0">
                     <h1 className="display-1 text-center">Episodes</h1>
                     {episodesList}                    
                     </div>

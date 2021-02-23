@@ -39,15 +39,16 @@ const FormSearch = ({ getSearchAction, fetching, resultSearch, optionSearch }) =
 
     return (        
         <>
-            <div className="container">
+            <div className="container">                
                 <div className="row justify-content-center">
-                    <div className="col-lg-8 col-sm-12 col-md-12">
+                    <div className="card shadow-sm">
+                    <div className="col-lg-12 col-sm-12 col-md-12">
                         <h1 className="display-1 text-center ">Rick and morty</h1>
                         <form className="text-center mt-5 mb-3"
                             onSubmit={onSubmit}
                         >
                             <div className="row g-3">
-                                <div className="col-sm-4">
+                                <div className="col-sm-3">
                                     <select 
                                         className="form-select" 
                                         aria-label="Select Character or Episode" 
@@ -62,7 +63,7 @@ const FormSearch = ({ getSearchAction, fetching, resultSearch, optionSearch }) =
                                         </option>
                                     </select>
                                 </div>
-                                <div className="col-sm-8">
+                                <div className="col-sm-6">
                                     <input 
                                         type="text" 
                                         name="name"                                        
@@ -73,7 +74,7 @@ const FormSearch = ({ getSearchAction, fetching, resultSearch, optionSearch }) =
                                         onChange={onChangeName}
                                     />
                                 </div>
-                                <div className="col-sm d-grid gap-2">
+                                <div className="col-sm-3 d-grid gap-2">
                                     <button className="btn btn-warning text-white" type="submit">Search</button>
                                 </div>
                                 {error && <p className="alert alert-danger">Check fields are not empty</p>}
@@ -81,10 +82,11 @@ const FormSearch = ({ getSearchAction, fetching, resultSearch, optionSearch }) =
                         </form>
                         {fetching === true && <p className="alert alert-warning">Cargando...</p> }
                         
-                    </div>
+                    </div>                
                     <div className="row justify-content-center mt-3">
                         {listSearch}
-                    </div>
+                    </div>                    
+                </div>
                 </div>
             </div>
         </>
