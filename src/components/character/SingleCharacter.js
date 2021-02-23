@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 const SingleCharacter = ({ currentCharacter }) => {
     // Nota: origin, location devuelven un objeto 
     // con dos valores name y url,
-    // Episode devuelve un array
+    // Episode devuelve un array  
     console.log(currentCharacter);
     
-    const { name, status, species, gender, type, origin, location, episode, created, image } = currentCharacter;            
+    
+    // const { name, status, species, gender, type, origin, location, episode, created, image } = data;            
 
     // const episodeList = episode.map(title => {
     //     // Consiguiendo el ID de los episodios a través de la url                 
@@ -23,36 +24,36 @@ const SingleCharacter = ({ currentCharacter }) => {
     return (
         <>
             <div className="container">
-                <h5 className="text-center display-1">{name}</h5>                
+                <h5 className="text-center display-1">{currentCharacter.name}</h5>                
                 <div className="row justify-content-center mt-5">
                     <div className="col-lg-6 col-sm-12 col-md-6 text-center">
-                        <img src={image} width="90%" className="border rounded-0" alt={name} />        
+                        <img src={currentCharacter.image} width="90%" className="border rounded-0" alt={currentCharacter.name} />        
                     </div>
                     <div className="col-lg-6 col-sm-12 col-md-6">                        
                     <ul className="list-group list-group-flush">                        
                         <li className="list-group-item">
-                            <p><span className="text-muted">Status:</span> <span className="">{status}</span></p>                                                                                            
+                            <p><span className="text-muted">Status:</span> <span className="">{currentCharacter.status}</span></p>                                                                                            
                         </li>
                         <li className="list-group-item">                            
-                            <p><span className="text-muted">Species:</span> <span className="">{species}</span></p>                                                                
+                            <p><span className="text-muted">Species:</span> <span className="">{currentCharacter.species}</span></p>                                                                
                         </li>
                         <li className="list-group-item">                            
-                            <p><span className="text-muted">Type:</span> <span className="">{type}</span></p>                                
+                            <p><span className="text-muted">Type:</span> <span className="">{currentCharacter.type}</span></p>                                
                         </li>
                         <li className="list-group-item">                            
-                            <p><span className="text-muted">Gender:</span> <span className="">{gender}</span></p>                                
+                            <p><span className="text-muted">Gender:</span> <span className="">{currentCharacter.gender}</span></p>                                
                         </li>
                         <li className="list-group-item">                            
-                            <p><span className="text-muted">Origin:</span> <span className="">{origin.name}</span></p>                                
+                            <p><span className="text-muted">Origin:</span> <span className="">{currentCharacter.origin.name}</span></p>                                
                         </li>
                         <li className="list-group-item">                            
-                            <p><span className="text-muted">Location:</span> <span className="">{location.name}</span></p>                                
+                            <p><span className="text-muted">Location:</span> <span className="">{currentCharacter.location.name}</span></p>                                
                         </li>
                         {/* <li className="list-group-item">                            
                             <p><span className="text-muted">Episodes:</span></p>{episodeList}
                         </li>                         */}
                         <li className="list-group-item">                                                        
-                            <p><span className="text-muted">Created:</span> <span className="">{created.substring(0,10)}</span></p>                                
+                            <p><span className="text-muted">Created:</span> <span className="">{currentCharacter.created}</span></p>                                
                         </li>
                     </ul>
                     </div>

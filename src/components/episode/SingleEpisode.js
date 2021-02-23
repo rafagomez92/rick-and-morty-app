@@ -7,8 +7,7 @@ const SingleEpisode = ({ currentEpisode }) => {
     const { id, name, air_date, episode, characters, created } = currentEpisode;  
     
     return (
-        <>
-        Object.keys(obj).length === 0
+        <>        
             <div className="container">                
             <h5 className="text-center display-1">{name}</h5>                
                 <div className="row justify-content-center mt-5">
